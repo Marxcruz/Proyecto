@@ -4,7 +4,9 @@
   "description": "primer node",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "tarea1": "nodemon tarea1.js",
+    "Ejercicio1al5": "nodemon Ejercicio1al5.js"
   },
   "author": "",
   "license": "ISC",
