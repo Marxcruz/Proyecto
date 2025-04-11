@@ -5,12 +5,15 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "tarea1": "nodemon tarea1.js",
-    "Ejercicio1al5": "nodemon Ejercicio1al5.js"
+    "Ejercicio1al5": "nodemon Ejercicio1al5.js",
+    "tarea1": "nodemon tarea1.js"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": { 
+  "devDependencies": {
     "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "node": "file:"
   }
 }
