@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon app.js",
     "Ejercicio1al5": "nodemon Ejercicio1al5.js",
-    "tarea1": "nodemon tarea1.js"
+    "tarea1": "nodemon tarea1.js",
+    "tarea2": "nodemon tarea2.js",
+    "tarea3": "nodemon tarea3.js"
   },
   "author": "",
   "license": "ISC",
