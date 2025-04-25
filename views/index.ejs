@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
+    <title>Primera</title>
+    <%=title%>
+        <%if(showMessage){%>
+            <%=message%>
+                <%}else{%>
+                    este es un mensaje por defecto
+                    <%}%>
+                        <ul>
+                            <%for(let i=0;i<items.length;i++){%>
+                                <li>
+                                    <%=items[i]%>
+                                </li>
+                                <%}%>
+                        </ul>
 </head>
-<body>
-    <h1>Bienvenido a mi primera pagina</h1>
-    <% if (showMessage) { %>
-        <p><%= message %></p>
-    <% } else { %>
-        <p>este es un mensaje por defecto</p>
-    <% } %>
 
-    <ul>
-        <% for (let i = 0; i < items.length; i++) { %>
-            <li><%= items[i] %></li>
-        <% } %>
-    </ul>
+<body>
+    <h1>Bienvenido a la pagina </h1>
 </body>
+
 </html>

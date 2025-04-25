@@ -1,8 +1,8 @@
-const userLogin = (req, res, next) => {
-    let isLogin = true;
-    if (!isLogin) {
-       return res.status(401).json({'message': 'usuario no logeado'})
+const userLogin=(req,res,netx)=>{
+    let isLogin=true
+    if(!isLogin){
+        return res.status(401).jsom({'message':"usuario no logeado"})
     }
-    next
+    netx()
 }
-module.exports = userLogin
+module.exports=userLogin
