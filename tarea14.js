@@ -19,7 +19,7 @@ const pedirNumero = () => {
             rl.close();
         } else {
             console.log("El número debe ser mayor que 0. Intenta de nuevo.");
-            pedirNumero(); 
+            pedirNumero();
         }
     });
 };

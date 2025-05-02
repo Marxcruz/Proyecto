@@ -7,13 +7,14 @@ const host = 'localhost';
 server.listen(port, host, () => {
     console.log(`Servidor ejecutandose en http://${host}:${port}`)
 })*/
-
+const connection=require('./database/connection')
 const express=require('express')
 const app=express()
 const userRouter=require('./routers/userRouters')
 const morgan=require('morgan')
 const userLogin=require('./middlewares/userLogin')
 const path=require('path')
+
 
 app.use(express.json())
 app.use(morgan('dev'))
