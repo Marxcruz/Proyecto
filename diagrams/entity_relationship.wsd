@@ -1,0 +1,91 @@
+@startuml Entity Relationship Diagram - MediPlus
+
+' Entidades principales
+entity "Pacientes" as pacientes {
+  * _id : ObjectId
+  --
+  * nombre : String
+  * apellido : String
+  * fechaNac : Date
+  * genero : String
+  * direccion : Object
+  * telefono : String
+  * email : String
+  * grupoSanguineo : String
+  * alergias : Array
+  * antecedentes : Array
+}
+
+entity "Médicos" as medicos {
+  * _id : ObjectId
+  --
+  * nombre : String
+  * apellido : String
+  * especialidad : String
+  * licencia : String
+  * telefono : String
+  * email : String
+  * disponibilidad : Array
+  * horario : Object
+}
+
+entity "Citas" as citas {
+  * _id : ObjectId
+  --
+  * pacienteId : ObjectId
+  * medicoId : ObjectId
+  * fecha : Date
+  * hora : String
+  * estado : String
+  * motivo : String
+  * notas : String
+}
+
+entity "Tratamientos" as tratamientos {
+  * _id : ObjectId
+  --
+  * citaId : ObjectId
+  * pacienteId : ObjectId
+  * medicoId : ObjectId
+  * diagnostico : String
+  * descripcion : String
+  * duracion : Object
+  * instrucciones : String
+}
+
+entity "Recetas" as recetas {
+  * _id : ObjectId
+  --
+  * pacienteId : ObjectId
+  * medicoId : ObjectId
+  * fecha : Date
+  * medicamentos : Array
+  * dosis : String
+  * instrucciones : String
+  * vigencia : Object
+}
+
+entity "Exámenes" as examenes {
+  * _id : ObjectId
+  --
+  * pacienteId : ObjectId
+  * medicoId : ObjectId
+  * fecha : Date
+  * tipo : String
+  * resultados : Object
+  * observaciones : String
+  * archivos : Array
+}
+
+' Relaciones
+pacientes ||--o{ citas : "tiene"
+medicos ||--o{ citas : "atiende"
+citas ||--o| tratamientos : "genera"
+pacientes ||--o{ tratamientos : "recibe"
+medicos ||--o{ tratamientos : "prescribe"
+pacientes ||--o{ recetas : "recibe"
+medicos ||--o{ recetas : "emite"
+pacientes ||--o{ examenes : "se realiza"
+medicos ||--o{ examenes : "solicita"
+
+@enduml

@@ -1,0 +1,102 @@
+@startuml Component Diagram - MediPlus
+
+package "Aplicación MediPlus" {
+  [app.js] as app
+  note right of app
+    Configuración principal, 
+    middleware, rutas y 
+    servidor Express
+  end note
+  
+  [config.js] as config
+  [database/connection.js] as dbConnection
+  
+  package "middlewares" {
+    [auth.js] as auth
+    [validation.js] as validation
+    [errorHandler.js] as errorHandler
+  }
+  
+  package "routers" {
+    [pacienteRouters.js] as pacienteRouter
+    [medicoRouters.js] as medicoRouter
+    [citaRouters.js] as citaRouter
+    [tratamientoRouters.js] as tratamientoRouter
+    [recetaRouters.js] as recetaRouter
+    [examenRouters.js] as examenRouter
+    [historiaClinicaRouters.js] as historiaClinicaRouter
+  }
+  
+  package "controllers" {
+    [pacienteController.js] as pacienteController
+    [medicoController.js] as medicoController
+    [citaController.js] as citaController
+    [tratamientoController.js] as tratamientoController
+    [recetaController.js] as recetaController
+    [examenController.js] as examenController
+    [historiaClinicaController.js] as historiaClinicaController
+  }
+  
+  package "services" {
+    [pacienteService.js] as pacienteService
+    [medicoService.js] as medicoService
+    [citaService.js] as citaService
+    [tratamientoService.js] as tratamientoService
+    [recetaService.js] as recetaService
+    [examenService.js] as examenService
+    [reporteService.js] as reporteService
+  }
+  
+  package "models" {
+    [pacienteModel.js] as pacienteModel
+    [medicoModel.js] as medicoModel
+    [citaModel.js] as citaModel
+    [tratamientoModel.js] as tratamientoModel
+    [recetaModel.js] as recetaModel
+    [examenModel.js] as examenModel
+  }
+}
+
+' Relaciones entre componentes
+app --> config
+app --> dbConnection
+app --> auth
+app --> pacienteRouter
+app --> medicoRouter
+app --> citaRouter
+app --> tratamientoRouter
+app --> recetaRouter
+app --> examenRouter
+app --> historiaClinicaRouter
+
+pacienteRouter --> pacienteController
+medicoRouter --> medicoController
+citaRouter --> citaController
+tratamientoRouter --> tratamientoController
+recetaRouter --> recetaController
+examenRouter --> examenController
+historiaClinicaRouter --> historiaClinicaController
+
+pacienteController --> pacienteService
+medicoController --> medicoService
+citaController --> citaService
+tratamientoController --> tratamientoService
+recetaController --> recetaService
+examenController --> examenService
+historiaClinicaController --> reporteService
+
+pacienteService --> pacienteModel
+medicoService --> medicoModel
+citaService --> citaModel
+tratamientoService --> tratamientoModel
+recetaService --> recetaModel
+examenService --> examenModel
+
+dbConnection --> pacienteModel
+dbConnection --> medicoModel
+dbConnection --> citaModel
+dbConnection --> tratamientoModel
+dbConnection --> recetaModel
+dbConnection --> examenModel
+
+@enduml

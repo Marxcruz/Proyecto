@@ -1,0 +1,159 @@
+@startuml Class Models - MediPlus
+
+' Definición de los modelos de MongoDB (NoSQL)
+note top of Paciente
+  <b>Modelo NoSQL (MongoDB)</b>
+  Las relaciones se implementan mediante
+  referencias de ObjectId entre documentos
+end note
+
+class Paciente {
+  _id: ObjectId
+  nombre: String
+  apellido: String
+  fechaNacimiento: Date
+  genero: String
+  direccion: Object
+  contacto: Object
+  grupoSanguineo: String
+  alergias: Array
+  antecedentes: Array
+  historiaClinica: Object
+  fechaRegistro: Date
+  ultimaActualizacion: Date
+  
+  +crearPaciente()
+  +actualizarPaciente()
+  +eliminarPaciente()
+  +buscarPorId()
+  +listarTodos()
+  +obtenerHistoriaClinica()
+}
+
+class Medico {
+  _id: ObjectId
+  nombre: String
+  apellido: String
+  especialidad: String
+  licenciaMedica: String
+  contacto: Object
+  disponibilidad: Array
+  educacion: Array
+  fechaRegistro: Date
+  estado: String
+  
+  +crearMedico()
+  +actualizarMedico()
+  +eliminarMedico()
+  +buscarPorId()
+  +listarTodos()
+  +buscarPorEspecialidad()
+  +actualizarDisponibilidad()
+}
+
+class Cita {
+  _id: ObjectId
+  pacienteId: ObjectId <<referencia>>
+  medicoId: ObjectId <<referencia>>
+  fecha: Date
+  hora: Object
+  estado: String
+  motivo: String
+  notas: String
+  tipoConsulta: String
+  fechaCreacion: Date
+  ultimaActualizacion: Date
+  
+  +crearCita()
+  +actualizarCita()
+  +eliminarCita()
+  +buscarPorId()
+  +listarTodas()
+  +buscarPorPaciente()
+  +buscarPorMedico()
+  +buscarPorFecha()
+  +cambiarEstado()
+}
+
+class Tratamiento {
+  _id: ObjectId
+  citaId: ObjectId <<referencia>>
+  pacienteId: ObjectId <<referencia>>
+  medicoId: ObjectId <<referencia>>
+  diagnostico: String
+  descripcion: String
+  duracion: Object
+  instrucciones: String
+  seguimiento: Object
+  fechaCreacion: Date
+  fechaActualizacion: Date
+  
+  +crearTratamiento()
+  +actualizarTratamiento()
+  +eliminarTratamiento()
+  +buscarPorId()
+  +listarTodos()
+  +buscarPorPaciente()
+  +buscarPorCita()
+}
+
+class Receta {
+  _id: ObjectId
+  pacienteId: ObjectId <<referencia>>
+  medicoId: ObjectId <<referencia>>
+  fecha: Date
+  medicamentos: Array
+  notas: String
+  vigencia: Object
+  estado: String
+  
+  +crearReceta()
+  +actualizarReceta()
+  +eliminarReceta()
+  +buscarPorId()
+  +listarTodas()
+  +buscarPorPaciente()
+  +buscarVigentes()
+}
+
+class Examen {
+  _id: ObjectId
+  pacienteId: ObjectId <<referencia>>
+  medicoId: ObjectId <<referencia>>
+  fecha: Date
+  tipo: String
+  resultados: Object
+  observaciones: String
+  archivos: Array
+  fechaCreacion: Date
+  fechaResultados: Date
+  estado: String
+  
+  +crearExamen()
+  +actualizarExamen()
+  +eliminarExamen()
+  +buscarPorId()
+  +listarTodos()
+  +buscarPorPaciente()
+  +actualizarResultados()
+  +buscarPendientes()
+}
+
+' Referencias entre documentos (estilo NoSQL)
+note bottom of Cita
+  En MongoDB, las relaciones se implementan
+  mediante referencias (ObjectId) en lugar
+  de relaciones tradicionales SQL
+end note
+
+Cita ..> Paciente : pacienteId referencia a
+Cita ..> Medico : medicoId referencia a
+Tratamiento ..> Cita : citaId referencia a
+Tratamiento ..> Paciente : pacienteId referencia a
+Tratamiento ..> Medico : medicoId referencia a
+Receta ..> Paciente : pacienteId referencia a
+Receta ..> Medico : medicoId referencia a
+Examen ..> Paciente : pacienteId referencia a
+Examen ..> Medico : medicoId referencia a
+
+@enduml

@@ -1,0 +1,19 @@
+@startuml Workflow Exámenes - MediPlus
+
+title Proceso de Gestión de Exámenes
+
+start
+:Solicitud de Examen;
+:Programación de Examen;
+:Realización de Examen;
+:Registro de Resultados;
+:Análisis de Resultados;
+:Consulta de Resultados;
+if (¿Requiere seguimiento?) then (Sí)
+  :Programación de consulta de seguimiento;
+else (No)
+  :Archivo en historia clínica;
+endif
+stop
+
+@enduml

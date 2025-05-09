@@ -1,27 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primera</title>
-    <%=title%>
-        <%if(showMessage){%>
-            <%=message%>
-                <%}else{%>
-                    este es un mensaje por defecto
-                    <%}%>
-                        <ul>
-                            <%for(let i=0;i<items.length;i++){%>
-                                <li>
-                                    <%=items[i]%>
-                                </li>
-                                <%}%>
-                        </ul>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Primer Chat</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <h1>Bienvenido a la pagina </h1>
+    <div id="chat">
+        <h1 class="chat-title">Mi Primer Chat</h1>
+        <input type="text" id="username" placeholder="Ingrese su Nombre de Usuario" />
+        <div id="messages"></div>
+        <div id="writing"></div>
+        <textarea id="writemessage" placeholder="Ingrese su mensaje"></textarea>
+        <button id="sendBtn">Enviar</button>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const username = document.getElementById('username');
+        const writemessage = document.getElementById('writemessage');
+        const writing = document.getElementById('writing');
+        const messages = document.getElementById('messages');
+        const sendBtn = document.getElementById('sendBtn');
+
+        // Mostrar todos los mensajes
+        socket.on('all-messages', (m) => {
+            let content = '';
+            for (const message of m) {
+                content += `
+          <div class="message">
+            ${message.user}: ${message.content}
+          </div>
+        `;
+            }
+            messages.innerHTML = content;
+            messages.scrollTop = 0; // Scroll to top to keep "Mi Primer Chat" visible
+        });
+
+        // Evento de "escribiendo"
+        writemessage.addEventListener('keydown', () => {
+            if (username.value.trim() !== "") {
+                socket.emit('writing', username.value);
+            }
+        });
+
+        socket.on('writing', (user) => {
+            writing.innerHTML = `${user} está escribiendo...`;
+            setTimeout(() => (writing.innerHTML = ""), 3000);
+        });
+
+        // Enviar con Enter
+        writemessage.addEventListener('keyup', (event) => {
+            if (event.code === "Enter") {
+                event.preventDefault();
+                enviarMensaje();
+            }
+        });
+
+        // Enviar con botón
+        sendBtn.addEventListener('click', () => {
+            enviarMensaje();
+        });
+
+        function enviarMensaje() {
+            const user = username.value.trim();
+            const msg = writemessage.value.trim();
+            if (!user || !msg) {
+                return alert('El Nombre del Usuario y el mensaje son requeridos');
+            }
+
+            socket.emit('new-message', {
+                username: user,
+                message: msg
+            });
+
+            writemessage.value = '';
+        }
+    </script>
 </body>
 
 </html>

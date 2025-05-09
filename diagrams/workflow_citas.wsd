@@ -1,0 +1,22 @@
+@startuml Workflow Citas - MediPlus
+
+title Proceso de Gestión de Citas
+
+start
+:Verificación de Disponibilidad;
+:Reserva de Cita;
+:Confirmación de Cita;
+fork
+  :Recordatorio de Cita;
+  if (¿Paciente confirma?) then (No)
+    :Reprogramación de Cita;
+    :Notificación al Paciente;
+  else (Sí)
+    :Notificación al Médico;
+  endif
+fork again
+  :Preparación de Expediente;
+end fork
+stop
+
+@enduml

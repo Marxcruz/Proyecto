@@ -1,0 +1,11 @@
+{
+    "pacienteId": "507f1f77bcf86cd799439011",
+    "medicoId": "507f1f77bcf86cd799439012",
+    "fecha": "2025-05-10",
+    "hora": {
+        "inicio": "09:00",
+        "fin": "10:00"
+    },
+    "motivo": "Consulta general",
+    "estado": "programada"
+}

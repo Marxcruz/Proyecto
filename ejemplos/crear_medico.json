@@ -1,0 +1,35 @@
+{
+  "nombre": "Juan",
+  "apellido": "Pérez",
+  "especialidad": "Cardiología",
+  "licenciaMedica": "MED12345",
+  "contacto": {
+    "telefono": "555-123-4567",
+    "email": "juan.perez@mediplus.com"
+  },
+  "disponibilidad": [
+    {
+      "dia": "Lunes",
+      "horaInicio": "08:00",
+      "horaFin": "16:00"
+    },
+    {
+      "dia": "Miércoles",
+      "horaInicio": "08:00",
+      "horaFin": "16:00"
+    },
+    {
+      "dia": "Viernes",
+      "horaInicio": "08:00",
+      "horaFin": "13:00"
+    }
+  ],
+  "educacion": [
+    {
+      "institucion": "Universidad Nacional",
+      "titulo": "Doctor en Medicina",
+      "año": 2015
+    }
+  ],
+  "estado": "Activo"
+}

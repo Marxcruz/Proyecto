@@ -1,25 +1,39 @@
 {
-  "name": "node",
+  "name": "mediplus",
   "version": "1.0.0",
-  "description": "primer node",
+  "description": "Sistema de Gestión de Historias Clínicas",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js",
-    "Ejercicio1al5": "nodemon Ejercicio1al5.js",
-    "tarea1": "nodemon tarea1.js",
-    "tarea2": "nodemon tarea2.js",
-    "tarea3": "nodemon tarea3.js"
+    "start": "node app.js",
+    "dev": "kill-port 3000 && nodemon app.js",
+    "dev:clean": "kill-port 3000 && nodemon --config nodemon.json app.js",
+    "debug": "ndb app.js"
   },
-  "author": "",
+  "author": "MediPlus Team",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.1.9"
   },
   "dependencies": {
+    "axios": "^1.9.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
-    "express": "^5.1.0",
+    "express": "^4.18.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^7.2.0",
+    "helmet": "^7.1.0",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^9.0.2",
+    "mediplus": "file:",
     "mongoose": "^8.14.1",
     "morgan": "^1.10.0",
-    "node": "file:"
+    "socket.io": "^4.8.1",
+    "validator": "^13.11.0",
+    "xss-clean": "^0.1.4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }

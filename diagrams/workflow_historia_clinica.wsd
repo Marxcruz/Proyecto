@@ -1,0 +1,20 @@
+@startuml Workflow Historia Clínica - MediPlus
+
+title Proceso de Gestión de Historias Clínicas
+
+start
+:Creación de Historia Clínica;
+repeat
+  :Actualización de Historia Clínica;
+  :Consulta de Historia Clínica;
+repeat while (¿Requiere seguimiento?) is (Sí)
+fork
+  :Generación de Estadísticas;
+fork again
+  :Análisis de Tendencias;
+fork again
+  :Reportes Médicos;
+end fork
+stop
+
+@enduml

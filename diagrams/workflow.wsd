@@ -1,0 +1,20 @@
+@startuml Workflow Diagram - MediPlus
+
+' Proceso de Registro y Atención de Pacientes
+title Proceso de Registro y Atención de Pacientes
+
+start
+:Registro de Paciente;
+:Programación de Cita;
+:Check-in de Paciente;
+:Consulta Médica;
+fork
+  :Registro de Tratamiento;
+  :Generación de Receta;
+  :Seguimiento de Tratamiento;
+fork again
+  :Programación de Exámenes;
+end fork
+stop
+
+@enduml

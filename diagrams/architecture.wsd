@@ -1,0 +1,50 @@
+@startuml Architecture Diagram - MediPlus
+
+' Definición de componentes
+package "Cliente (Frontend)" {
+  [Interfaz Web] as web
+  [Aplicación Móvil] as mobile
+}
+
+package "Servidor (Backend)" {
+  [API REST] as api
+  [Autenticación & Autorización] as auth
+  [Controladores] as controllers
+  [Middlewares] as middlewares
+  [Servicios] as services
+  [Utilidades] as utils
+  [Modelos] as models
+}
+
+database "Base de Datos MongoDB" {
+  [Pacientes] as dbPacientes
+  [Médicos] as dbMedicos
+  [Citas] as dbCitas
+  [Tratamientos] as dbTratamientos
+  [Recetas] as dbRecetas
+  [Exámenes] as dbExamenes
+}
+
+' Relaciones entre componentes
+web --> api : HTTP/HTTPS
+mobile --> api : HTTP/HTTPS
+
+api <--> auth
+api --> controllers
+
+controllers <--> middlewares
+controllers --> services
+services --> models
+
+models --> dbPacientes
+models --> dbMedicos
+models --> dbCitas
+models --> dbTratamientos
+models --> dbRecetas
+models --> dbExamenes
+
+dbPacientes <--> dbMedicos
+dbCitas <--> dbTratamientos
+dbRecetas <--> dbExamenes
+
+@enduml
